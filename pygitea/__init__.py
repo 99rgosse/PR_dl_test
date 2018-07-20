@@ -8,10 +8,10 @@ API doc: https://try.gitea.io/api/swagger
 import parse
 import requests
 
-from pytea.resources import resources
+from pygitea.resources import resources
 
 
-class PyteaRequestException(Exception):
+class PygiteaRequestException(Exception):
     pass
 
 
@@ -59,7 +59,7 @@ class API(object):
 
         # Check if request needs auth token
         if path.split('/')[1] == 'admin' and self._token is None:
-            raise PyteaRequestException(
+            raise PygiteaRequestException(
                 'Resource \'{}\' require an authentification token.'.format(resource['path'])
             )
         else:
@@ -67,7 +67,7 @@ class API(object):
 
         # Check if `resource` expect to be called with `method` HTTP method
         if not self._resource_has_method(resource, method):
-            raise PyteaRequestException('Resource \'{}\' did not expect method {}'.format(
+            raise PygiteaRequestException('Resource \'{}\' did not expect method {}'.format(
                 resource['path'],
                 method.upper()
             ))
@@ -76,7 +76,7 @@ class API(object):
         required_params = self.clean_resource_params(resource['path'], resource[method]['parameters'])
         for key in required_params:
             if key not in params.keys():
-                raise PyteaRequestException('Resource \'{}\' with method {} expect parameter \'{}\''.format(
+                raise PygiteaRequestException('Resource \'{}\' with method {} expect parameter \'{}\''.format(
                     resource['path'],
                     method.upper(),
                     key
@@ -115,7 +115,7 @@ class API(object):
         '''
         key = self._get_resource_path(path)
         if key is None:
-            raise PyteaRequestException('Path \'{}\' did not match with any resource'.format(path))
+            raise PygiteaRequestException('Path \'{}\' did not match with any resource'.format(path))
 
         resource = resources[key].copy()
         resource['path'] = key
