@@ -13,6 +13,8 @@ setup(
         'parse',
         'requests'
     ],
+    setup_requires=["pytest-runner"],
+    tests_require=["pytest"],
     license='WTFPL',
     packages=['pygitea']
 )
