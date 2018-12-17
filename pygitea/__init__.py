@@ -55,12 +55,10 @@ class API(object):
         if params is None:
             params = {}
         method = method.lower()
-        resource = self.get_resource(path).copy()
-
         # Check if request needs auth token
         if path.split('/')[1] == 'admin' and self._token is None:
             raise PygiteaRequestException(
-                'Resource \'{}\' require an authentification token.'.format(resource['path'])
+                'Resource \'{}\' require an authentification token.'.format(path)
             )
         else:
             params['token'] = self._token
@@ -90,21 +88,6 @@ class API(object):
         return params
 
 
-    def get_resource(self, path):
-        '''
-        Returns resource's hash from URI (path)
-        Augment resource's hash with non-formated path for convenience.
-        Returns augmented resource hash.
-        '''
-        key = self._get_resource_path(path)
-        if key is None:
-            raise PygiteaRequestException('Path \'{}\' did not match with any resource'.format(path))
-
-        resource = resources[key].copy()
-        resource['path'] = key
-        return resource
-
-
     def _resource_has_method(self, resource, method):
         '''
         Check if `resource` (path to resource) accept `method` (HTTP method).
@@ -112,24 +95,4 @@ class API(object):
         if method not in resource.keys():
             return False
         return True
-
-    def _get_resource_path(self, path):
-        '''
-        Get raw resource's path (/foo/{bar}) from formatted one (/foo/bar).
-        '''
-        # Two or more routes can match with `path`
-        # The one with more characters is the good one.
-        # I guess?..
-        possibilities = []
-        for method in resources:
-            compiled = parse.compile(method)
-            reparsed = compiled.parse(path)
-            if reparsed is not None:
-                possibilities.append(method)
-
-        if len(possibilities) == 0:
-            return None
-
-        # Return only best possibility
-        return sorted(possibilities, key=len)[-1]
 
