@@ -30,8 +30,8 @@ class API(object):
         self._token = token
 
     # Aliases to `call`, this should be prefered entry-points
-    def post(self, path, params=None):
-        return self.call(path, method='post', params=params)
+    def post(self, path, params=None, json=None):
+        return self.call(path, method='post', params=params, json=json)
 
     def get(self, path, params=None):
         return self.call(path, method='get', params=params)
@@ -39,14 +39,14 @@ class API(object):
     def delete(self, path, params=None):
         return self.call(path, method='delete', params=params)
 
-    def patch(self, path, params=None):
-        return self.call(path, method='patch', params=params)
+    def patch(self, path, params=None, json=None):
+        return self.call(path, method='patch', params=params, json=json)
 
-    def put(self, path, params=None):
-        return self.call(path, method='put', params=params)
+    def put(self, path, params=None, json=None):
+        return self.call(path, method='put', params=params, json=json)
 
 
-    def call(self, path, method, params=None):
+    def call(self, path, method, params=None, json=None):
         '''
         Compute, check and execute request to API.
         Returns requests.Response object.
@@ -75,6 +75,8 @@ class API(object):
         # Check if all required parameters are given
         required_params = self.clean_resource_params(resource['path'], resource[method]['parameters'])
         for key in required_params:
+            if key == "body" and json not None:
+                continue
             if key not in params.keys():
                 raise PygiteaRequestException('Resource \'{}\' with method {} expect parameter \'{}\''.format(
                     resource['path'],
@@ -84,7 +86,7 @@ class API(object):
 
         func = getattr(requests, method)
         final_uri = ''.join([self._baseuri, path])
-        return func(final_uri, params=params)
+        return func(final_uri, params=params, json=json)
 
 
     def clean_resource_params(self, resource_path, params):
