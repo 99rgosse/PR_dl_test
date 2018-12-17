@@ -65,25 +65,6 @@ class API(object):
         else:
             params['token'] = self._token
 
-        # Check if `resource` expect to be called with `method` HTTP method
-        if not self._resource_has_method(resource, method):
-            raise PygiteaRequestException('Resource \'{}\' did not expect method {}'.format(
-                resource['path'],
-                method.upper()
-            ))
-
-        # Check if all required parameters are given
-        required_params = self.clean_resource_params(resource['path'], resource[method]['parameters'])
-        for key in required_params:
-            if key == "body" and json is not None:
-                continue
-            if key not in params.keys():
-                raise PygiteaRequestException('Resource \'{}\' with method {} expect parameter \'{}\''.format(
-                    resource['path'],
-                    method.upper(),
-                    key
-                ))
-
         func = getattr(requests, method)
         final_uri = ''.join([self._baseuri, path])
         return func(final_uri, params=params, json=json)
