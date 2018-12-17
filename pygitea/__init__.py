@@ -75,7 +75,7 @@ class API(object):
         # Check if all required parameters are given
         required_params = self.clean_resource_params(resource['path'], resource[method]['parameters'])
         for key in required_params:
-            if key == "body" and json not None:
+            if key == "body" and json is not None:
                 continue
             if key not in params.keys():
                 raise PygiteaRequestException('Resource \'{}\' with method {} expect parameter \'{}\''.format(
