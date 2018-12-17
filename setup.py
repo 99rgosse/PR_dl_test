@@ -4,9 +4,9 @@ from setuptools import setup
 
 setup(
     name='pygitea',
-    version='0.0.1',
+    version='0.0',
     description='Gitea API wrapper for python',
-    url='http://github.com/jo-nas/pygitea',
+    url='https://github.com/h44z/pygitea',
     author='Jonas',
     author_email='jonas@steinka.mp',
     install_requires=[
