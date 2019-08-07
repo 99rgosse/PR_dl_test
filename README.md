@@ -4,7 +4,7 @@
 
 ## Install
 ```bash
-pip install pip install git+https://github.com/h44z/pygitea
+pip install git+https://github.com/h44z/pygitea
 ```
 
 
