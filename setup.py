@@ -7,14 +7,9 @@ setup(
     version='0.0',
     description='Gitea API wrapper for python',
     url='https://github.com/h44z/pygitea',
-    author='Jonas',
-    author_email='jonas@steinka.mp',
-    install_requires=[
-        'parse',
-        'requests'
-    ],
-    setup_requires=["pytest-runner"],
-    tests_require=["pytest"],
+    author='h44z',
+    author_email='h44z@sprinternet.at',
     license='WTFPL',
-    packages=['pygitea']
+    packages=['pygitea'],
+    zip_safe=False
 )
