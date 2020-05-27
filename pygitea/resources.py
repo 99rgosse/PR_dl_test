@@ -228,6 +228,13 @@ resources = {
             }
         }
     },
+    u'/orgs': {
+        u'post': {
+            "parameters": {
+                u'body': False
+            }
+        }
+    },
     u'/orgs/{org}': {
         u'get': {
             'parameters': {
@@ -237,6 +244,11 @@ resources = {
         u'patch': {
             'parameters': {
                 u'body': False,
+                u'org': True
+            }
+        },
+        u'delete': {
+            'parameters': {
                 u'org': True
             }
         }
