@@ -13,12 +13,11 @@ setup(
     packages=['pygitea'],
     zip_safe=False,
     install_requires=[
-        'certifi==1,<2',
-        'chardet==2',
-        'idna==2.6',
-        'parse==1.8.2',
-        'pkg-resources==0.0.0',
-        'requests==2.20.0',
-        'urllib3==1.24.2',
+        'certifi>=2020.4.5.1',
+        'chardet>=2',
+        'idna>=2.6',
+        'parse>=1.8.2',
+        'requests>=2.23.0',
+        'urllib3>=1.25.9',
     ]
 )
