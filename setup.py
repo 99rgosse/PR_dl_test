@@ -11,5 +11,14 @@ setup(
     author_email='h44z@sprinternet.at',
     license='WTFPL',
     packages=['pygitea'],
-    zip_safe=False
+    zip_safe=False,
+    install_requires=[
+        'certifi==1,<2',
+        'chardet==2',
+        'idna==2.6',
+        'parse==1.8.2',
+        'pkg-resources==0.0.0',
+        'requests==2.20.0',
+        'urllib3==1.24.2',
+    ]
 )
