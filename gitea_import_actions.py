@@ -3,14 +3,14 @@
 # git log --pretty=format:'%H,%at,%s' --date=default > /tmp/commit.log
 # to get the commits logfile for a repository
 
-import mysql.connector as mariadb
+import psycopg2
 
 # set the following variables to fit your need...
 USERID = 1
 REPOID = 1
 BRANCH = "master"
 
-mydb = mariadb.connect(
+mydb = psycopg2.connect(
   host="localhost",
   user="user",
   passwd="password",
