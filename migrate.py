@@ -18,6 +18,15 @@ GLOBAL_ERROR_COUNT = 0
 
 
 
+#######################
+# CONFIG SECTION START
+#######################
+GITLAB_URL = 'https://gitlab.source.com'
+GITLAB_TOKEN = 'gitlab token'
+
+# needed to clone the repositories, keep empty to try publickey (untested)
+GITLAB_ADMIN_USER = 'admin username'
+
 print("ADDING SOME BLABLABLABLABLABLABLABLABLABALB")
 
 
