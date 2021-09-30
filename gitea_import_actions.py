@@ -29,6 +29,14 @@ with open("/tmp/commit.log") as f:
         print(val)
         mycursor.execute(sql, val)
 
+with open("/tmp/commit.log") as f:
+    for line in f:
+        line_clean = line.rstrip('\n')
+        line_split = line_clean.split(',')
+        val = (USERID, 5, USERID, REPOID, 0, BRANCH, 1, int(line_split[1]))  # 5 means commit
+        print(val)
+        mycursor.execute(sql, val)
+
 mydb.commit()
 
 print("actions inserted.")
