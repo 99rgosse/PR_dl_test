@@ -16,6 +16,11 @@ import pygitea # pip install pygitea (https://github.com/h44z/pygitea)
 SCRIPT_VERSION = "1.0"
 GLOBAL_ERROR_COUNT = 0
 
+
+
+print("ADDING SOME BLABLABLABLABLABLABLABLABLABALB")
+
+
 #######################
 # CONFIG SECTION START
 #######################
